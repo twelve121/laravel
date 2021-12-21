@@ -12,5 +12,5 @@ class Topics extends Model
     protected $table = "topics";
     public $incrementing = true;
     public $timestamps = true;
-    protected $fillable = ['topic_id', 'title', 'thumbnail', 'description', 'user_id'];
+    protected $fillable = ['topic_id', 'title', 'thumbnail', 'description', 'user_id', 'exam_id'];
 }

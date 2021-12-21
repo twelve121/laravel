@@ -10,19 +10,19 @@
                 <div class="grid__col-2-3">
                     <div class="home-course__subject">
                         <!-- ,['id'=>'$value['topic_id']'] -->
-                        <a href="{{route('exam')}}" class="home-course__subject-img-link">
+                        <a href="{{route('user.exam',$value['exam_id'])}}" class="home-course__subject-img-link">
                             <div class="home-course__subject-img"style="background-image: url({{$value['thumbnail']}})"></div>
                         </a>
                         <div class="home-course__subject-wrapper">
                             <div class="home-course__subject-title">
                                 <h3 class="home-course__subject-title-name">
-                                    <a href="{{route('exam')}}" class="home-course__subject-title-link">{{$value['title']}}</a>
+                                    <a href="{{route('user.exam',$value['exam_id'])}}" class="home-course__subject-title-link">{{$value['title']}}</a>
                                 </h3>
                             </div> 
                             <div class="home-course__subject-description">
                                 <span>{{$value['description']}}</span>
                             </div>
-                            <a href="{{route('exam')}}" class="home-course__subject-link">
+                            <a href="{{route('user.exam',$value['exam_id'])}}" class="home-course__subject-link">
                                 <i class="ti-face-smile home-course__subject-icon"></i>
                                 Vào học
                             </a>

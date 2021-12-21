@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{{asset('css\style.css')}}">
     <link rel="stylesheet" href="{{asset('themify-icons\themify-icons.css')}}">
     <link rel="stylesheet" href="{{asset('fontawesome\css\all.min.css')}}">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <title>Trang chủ</title>
 </head>
 <body>

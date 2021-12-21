@@ -59,12 +59,8 @@ class LoginController extends Controller
             if( auth()->user()->role == 1 ){
                 return redirect()->route('admin.dashboard');
             }
-        elseif( auth()->user()->role == 2 ){
             return redirect()->route('user.dashboard');
         }
-
-        }else{
-            return redirect()->route('login')->with('error','Email and password are wrong');
-        }
+        return redirect()->route('login')->with('error','Email and password are wrong');
     }
 }

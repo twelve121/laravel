@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Questions extends Model
+class Exam extends Model
 {
     use HasFactory;
 
-    protected $table = "questions";
+    protected $table = "exam";
     public $incrementing = true;
     public $timestamps = true;
-    protected $fillable = ['question_id', 'question_text', 'topic_id'];
+    protected $fillable = ['exam_id', 'list', 'topic_id'];
 }

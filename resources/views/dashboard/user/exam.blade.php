@@ -8,11 +8,13 @@
                 <h2 class="testing__header-title">COMP 125 - Kiến thức cơ bản về WORD</h2>
             </div>
             <div class="grid__col-6-2">
-                @foreach($question as $key => $q)
+                <form id="myform" method="post" name="quiz" action="{{route('user.submitExam')}}">
+                @csrf
+                @foreach ($listQuest as $key => $value)
                 <div class="testing__question-wrapper">
                     <div class="testing__question">
-                        <a name="{{$q['id']}}"></a>
-                        <h3 class="testing__question-num-header">Câu hỏi {{$q['id']}}</h3>
+                        <a name="{{$key+1}}"></a>
+                        <h3 class="testing__question-num-header">Câu hỏi: {{$key+1}} </h3>
                         <div class="testing__question-properties">
                             <div class="testing__question-mark">Đạt điểm 1,00</div>
                             <div class="testing__question-flag">
@@ -22,20 +24,19 @@
                         </div>
                     </div>
 	                    <div class="testing__question-content ">
-	                        <h3 class="testing__question-title">{{$q['question_text']}}</h3>
-                            @foreach($question_option as $key => $qo)
-	                        <form action="" method="post" class="testing__question-answer">
-		                		@if($q['id'] == $qo['question_id'])
-	                            <div class="testing__question-answer-choosen">
-	                                <input type="radio" name="answer1" id="" class="testing__question-answer-input">
-	                                <label for=""class="testing__question-answer-label">{{$qo['option']}}</label>
-	                            </div>
-                                @endif
-	                        </form>
-	                		@endforeach
+	                        <h3 class="testing__question-title">{{$value['question']}}</h3>
+                                @foreach ($value['answer'] as $key2 => $ans)
+                                    @if ($key2 != 'ans')
+                                    <div class="testing__question-answer-choosen">
+                                        <input type="radio" value="{{$key2}}" name="{{$value['question_id']}}" id="{{$value['question_id'].$key2}}" class="testing__question-answer-input">
+                                        <label for="{{$value['question_id'].$key2}}"class="testing__question-answer-label">{{$ans}}</label>
+                                    </div>
+                                    @endif
+                                @endforeach
 	                    </div>
                 </div>
                 @endforeach
+                </form>
             </div>
             <div class="grid__col-2-2">
                 <div class="testing__question-extra">
@@ -49,17 +50,15 @@
                                 <div id="quiz-time-left"></div>
                             </div>
                         </div>
-                        @foreach($question as $key => $q)
+                        @foreach ($listQuest as $key => $value)
                         <div class="testing__question-id">
                             <div class="testing__question-id-num">
-                                <a href="#{{$q['id']}}">{{$q['id']}}</a>
+                                <a href="#{{$key+1}}">{{$key+1}}</a>
                             </div>
                         </div>
                         @endforeach
                     </div>
-                    <form method="post" name="quiz" action="take_test.php">
-                        <input type="submit" value="Kết thúc bài kiểm tra" class="testing__question-extra-submit">
-                    </form>
+                        <button form="myform" type="submit" class="testing__question-extra-submit">Kết thúc bài kiểm tra</button>
                 </div>
 
             </div>

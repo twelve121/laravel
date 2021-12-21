@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ExamsController;
-
+use Illuminate\Support\Facades\Auth;
 
 
 /*
@@ -21,14 +21,13 @@ use App\Http\Controllers\ExamsController;
 Route::get('/', function () {
     return view('welcome');
 });
+Auth::routes();
 
 Route::middleware(['middleware'=>'PreventBackHistory'])->group(function () {
-    Auth::routes();
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/exam', [App\Http\Controllers\ExamsController::class, 'index'])->name('exam');
 
 Route::group(['prefix'=>'admin', 'middleware'=>['isAdmin','auth', 'PreventBackHistory']], function(){
     Route::get('dashboard',[AdminController::class,'index'])->name('admin.dashboard');
@@ -40,4 +39,8 @@ Route::group(['prefix'=>'user', 'middleware'=>['isUser','auth', 'PreventBackHist
     Route::get('dashboard',[UserController::class,'index'])->name('user.dashboard');
     Route::get('profile',[UserController::class,'profile'])->name('user.profile');
     Route::get('settings',[UserController::class,'settings'])->name('user.settings');
+    Route::get('exam/{id}', [UserController::class, 'exam'])->name('user.exam');
+    Route::post('exam', [UserController::class, 'submitExam'])->name('user.submitExam');
+    Route::get('result2/{id}', [UserController::class, 'resultExam'])->name('dashboard.user.result2');
+
 });
